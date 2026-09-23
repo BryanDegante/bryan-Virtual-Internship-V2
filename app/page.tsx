@@ -1,10 +1,20 @@
+'use client';
+
 import { AiFillAudio, AiFillBulb, AiFillFileText } from 'react-icons/ai';
 import { BiCrown } from 'react-icons/bi';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { RiLeafLine } from 'react-icons/ri';
 import styles from './page.module.css';
+import AuthenticationModal from '@/components/Home/AuthenticationModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsAuthOpen } from '@/redux/slices/authSlice';
+import type { RootState } from '@/redux/store';
 
 export default function Home() {
+
+	const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
+	const dispatch = useDispatch()
+
 	return (
 		<main>
 			{/* NAVBAR */}
@@ -21,6 +31,7 @@ export default function Home() {
 					<ul className={styles['nav__list--wrapper']}>
 						<li
 							className={`${styles.nav__list} ${styles['nav__list--login']}`}
+							onClick={() => dispatch(setIsAuthOpen())}
 						>
 							Login
 						</li>
@@ -72,13 +83,17 @@ export default function Home() {
 
 								<button
 									className={`btn ${styles['home__cta--btn']}`}
+									onClick={() => dispatch(setIsAuthOpen())}
 								>
 									Login
 								</button>
 							</div>
 
 							<figure className={styles['landing__image--mask']}>
-								<img src="/assets/landing.png" alt="Summarist" />
+								<img
+									src="/assets/landing.png"
+									alt="Summarist"
+								/>
 							</figure>
 						</div>
 					</div>
@@ -431,6 +446,7 @@ export default function Home() {
 						<div className={styles['reviews__btn--wrapper']}>
 							<button
 								className={`btn ${styles['home__cta--btn']}`}
+								onClick={() => dispatch(setIsAuthOpen())}
 							>
 								Login
 							</button>
@@ -702,6 +718,7 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
+			<AuthenticationModal isOpen = {isAuthOpen} />
 		</main>
 	);
 }
