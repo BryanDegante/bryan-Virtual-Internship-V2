@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import './globals.css';
+import ReduxProvider from '@/redux/Provider';
 
 export const metadata: Metadata = {
 	title: 'Summarist',
@@ -15,7 +16,9 @@ const roboto = Roboto({
 export default function RootLayout({ children }: LayoutProps<'/'>) {
 	return (
 		<html lang="en">
-			<body className={roboto.className}>{children}</body>
+			<body className={roboto.className}>
+				<ReduxProvider>{children}</ReduxProvider>
+			</body>
 		</html>
 	);
 }

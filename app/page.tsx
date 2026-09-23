@@ -13,7 +13,7 @@ export default function Home() {
 					<figure className={styles['nav__img--mask']}>
 						<img
 							className={styles.nav__img}
-							src=""
+							src="/assets/logo.png"
 							alt="Summarist logo"
 						/>
 					</figure>
@@ -78,7 +78,7 @@ export default function Home() {
 							</div>
 
 							<figure className={styles['landing__image--mask']}>
-								<img src="" alt="Summarist" />
+								<img src="/assets/landing.png" alt="Summarist" />
 							</figure>
 						</div>
 					</div>
