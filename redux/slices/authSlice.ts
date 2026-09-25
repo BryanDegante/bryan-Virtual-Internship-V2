@@ -9,6 +9,7 @@ export const authSlice = createSlice({
 		setIsAuthOpen: (state) => {
 			state.isAuthOpen = !state.isAuthOpen;
 		},
+	
 	},
 });
 
