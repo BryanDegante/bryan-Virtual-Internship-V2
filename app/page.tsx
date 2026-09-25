@@ -5,18 +5,18 @@ import { BiCrown } from 'react-icons/bi';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { RiLeafLine } from 'react-icons/ri';
 import styles from './page.module.css';
-import AuthenticationModal from '@/components/Home/AuthenticationModal';
+import AuthenticationModal from '@/components/Home/Auth Modal/AuthenticationModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsAuthOpen } from '@/redux/slices/authSlice';
 import type { RootState } from '@/redux/store';
 
 export default function Home() {
-
 	const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	return (
 		<main>
+			<AuthenticationModal isOpen={isAuthOpen} />
 			{/* NAVBAR */}
 			<nav className={styles.nav}>
 				<div className={styles.nav__wrapper}>
@@ -59,8 +59,8 @@ export default function Home() {
 
 			{/* LANDING */}
 			<section id="landing">
-				<div className="container">
-					<div className="row">
+				<div className="personal-container">
+					<div className="personal-row">
 						<div className={styles.landing__wrapper}>
 							<div className={styles.landing__content}>
 								<div className={styles.landing__content__title}>
@@ -102,8 +102,8 @@ export default function Home() {
 
 			{/* FEATURES */}
 			<section id="features">
-				<div className="container">
-					<div className="row">
+				<div className="personal-container">
+					<div className="personal-row">
 						<div className={styles.section__title}>
 							Understand books in few minutes
 						</div>
@@ -358,8 +358,8 @@ export default function Home() {
 
 			{/* REVIEWS */}
 			<section id="reviews">
-				<div className="row">
-					<div className="container">
+				<div className="personal-row">
+					<div className="personal-container">
 						<div className={styles.section__title}>
 							What our members say
 						</div>
@@ -457,8 +457,8 @@ export default function Home() {
 
 			{/* NUMBERS */}
 			<section id="numbers">
-				<div className="container">
-					<div className="row">
+				<div className="personal-container">
+					<div className="personal-row">
 						<div className={styles.section__title}>
 							Start growing with Summarist now
 						</div>
@@ -514,8 +514,8 @@ export default function Home() {
 
 			{/* FOOTER */}
 			<section className={styles.footer} id="footer">
-				<div className="container">
-					<div className="row">
+				<div className="personal-container">
+					<div className="personal-row">
 						<div className={styles['footer__top--wrapper']}>
 							<div className={styles.footer__block}>
 								<div className={styles['footer__link--title']}>
@@ -718,7 +718,6 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-			<AuthenticationModal isOpen = {isAuthOpen} />
 		</main>
 	);
 }
