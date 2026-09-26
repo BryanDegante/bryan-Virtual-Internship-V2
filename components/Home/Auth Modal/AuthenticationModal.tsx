@@ -5,6 +5,14 @@ import { IoMdClose } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { setIsAuthOpen } from '@/redux/slices/authSlice';
 import { useState } from 'react';
+import {
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	signInAnonymously,
+} from 'firebase/auth';
+import { auth } from '@/firebase/firebase';
+import { useRouter } from 'next/navigation';
+
 type AuthenticationModalProps = {
 	isOpen: boolean;
 };
@@ -13,7 +21,42 @@ const AuthenticationModal = ({ isOpen }: AuthenticationModalProps) => {
 	const [isLogin, setIsLogin] = useState(true);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
+
+	const router = useRouter();
 	const dispatch = useDispatch();
+
+	const handleRegister = async () => {
+		try {
+			setErrorMessage('');
+			await createUserWithEmailAndPassword(auth, email, password);
+			router.push('/for-you');
+		} catch (error) {
+			setErrorMessage(
+				'Unable to create account. Please check your information.',
+			);
+		}
+	};
+
+	const handleLogin = async () => {
+		try {
+			setErrorMessage('');
+			await signInWithEmailAndPassword(auth, email, password);
+			router.push('/for-you');
+		} catch (error) {
+			setErrorMessage('Email or Password is Incorrect');
+		}
+	};
+
+	const handleGuestLogin = async () => {
+		try {
+			setErrorMessage('');
+			await signInAnonymously(auth);
+			router.push('/for-you');
+		} catch {
+			setErrorMessage('Something went wrong');
+		}
+	};
 	if (!isOpen) return null;
 	return (
 		<div className="fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.75)] flex justify-center items-center flex-col  z-10">
@@ -26,7 +69,10 @@ const AuthenticationModal = ({ isOpen }: AuthenticationModalProps) => {
 					</div>
 					{isLogin && (
 						<>
-							<button className="relative flex bg-[#3a579d] text-white justify-center w-full h-10 rounded-sm text-base transition-colors duration-200 items-center min-w-45 hover:bg-[#25496b]">
+							<button
+								className="relative flex bg-[#3a579d] text-white justify-center w-full h-10 rounded-sm text-base transition-colors duration-200 items-center min-w-45 hover:bg-[#25496b]"
+								onClick={handleGuestLogin}
+							>
 								<figure className="flex items-center justify-center w-9 h-9 rounded-sm absolute left-0.5">
 									<IoPerson className="w-6 h-6" />
 								</figure>
@@ -62,6 +108,12 @@ const AuthenticationModal = ({ isOpen }: AuthenticationModalProps) => {
 						className="flex flex-col gap-4"
 						onSubmit={(event) => {
 							event.preventDefault();
+
+							if (isLogin) {
+								handleLogin();
+							} else {
+								handleRegister();
+							}
 						}}
 					>
 						<input
@@ -77,9 +129,14 @@ const AuthenticationModal = ({ isOpen }: AuthenticationModalProps) => {
 							type="password"
 							name="Password"
 							placeholder="Password"
-							onChange={(event) => setPassword(event.target.value)}
+							onChange={(event) =>
+								setPassword(event.target.value)
+							}
 							value={password}
 						/>
+						<p className="text-center text-sm text-red-500">
+							{errorMessage}
+						</p>
 						{isLogin ? (
 							<button className="btn">
 								<span>Login</span>
@@ -98,14 +155,14 @@ const AuthenticationModal = ({ isOpen }: AuthenticationModalProps) => {
 				)}
 				{isLogin ? (
 					<button
-						className="h-10 text-center bg-[#f1f6f4] text-[#116be9] w-full rounded-b-sm font-light text-base hover:bg-[#e1e9e8] transition-transform active:scale-95 "
+						className="h-10 text-center bg-[#f1f6f4] text-[#116be9] w-full rounded-b-sm font-light text-base hover:bg-[#e1e9e8]"
 						onClick={() => setIsLogin(false)}
 					>
 						Don't have an account?
 					</button>
 				) : (
 					<button
-						className="h-10 text-center bg-[#f1f6f4] text-[#116be9] w-full rounded-b-sm font-light text-base hover:bg-[#e1e9e8] transition-transform active:scale-95 "
+						className="h-10 text-center bg-[#f1f6f4] text-[#116be9] w-full rounded-b-sm font-light text-base hover:bg-[#e1e9e8]"
 						onClick={() => setIsLogin(true)}
 					>
 						Already have an account?

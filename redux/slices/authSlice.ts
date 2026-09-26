@@ -1,6 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = { isAuthOpen: false}
+type AuthUser = {
+	uid: string;
+	email: string | null;
+	isAnonymous: boolean;
+};
+
+type AuthState = {
+	isAuthOpen: boolean;
+	user: AuthUser | null;
+};
+
+const initialState: AuthState = {
+	isAuthOpen: false,
+	user: null,
+};
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -9,10 +23,12 @@ export const authSlice = createSlice({
 		setIsAuthOpen: (state) => {
 			state.isAuthOpen = !state.isAuthOpen;
 		},
-	
+		setUser: (state, action: PayloadAction<AuthUser | null>) => {
+			state.user = action.payload;
+		},
 	},
 });
 
-export const { setIsAuthOpen } = authSlice.actions;
+export const { setIsAuthOpen, setUser } = authSlice.actions;
 
 export default authSlice.reducer;

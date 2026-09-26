@@ -64,6 +64,7 @@ export default function Home() {
 						<div className={styles.landing__wrapper}>
 							<div className={styles.landing__content}>
 								<div className={styles.landing__content__title}>
+								
 									Gain more knowledge
 									<br className={styles['remove--tablet']} />
 									in less time
