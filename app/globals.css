@@ -1,12 +1,5 @@
-@import "tailwindcss/theme.css";
-@import "tailwindcss/utilities.css";
+@import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-}
 
 body {
   max-width: 100%;
@@ -15,19 +8,12 @@ body {
 
 a {
   text-decoration: none;
-  color: inherit;
 }
 
 ul {
   list-style: none;
 }
 
-button {
-  cursor: pointer;
-  outline: none;
-  border: none;
-  background-color: transparent;
-}
 
 button:active {
   transform: translateY(1px);
