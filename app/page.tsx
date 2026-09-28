@@ -1,12 +1,22 @@
+'use client';
+
 import { AiFillAudio, AiFillBulb, AiFillFileText } from 'react-icons/ai';
 import { BiCrown } from 'react-icons/bi';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { RiLeafLine } from 'react-icons/ri';
 import styles from './page.module.css';
+import AuthenticationModal from '@/components/UI/Auth Modal/AuthenticationModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsAuthOpen } from '@/redux/slices/authSlice';
+import type { RootState } from '@/redux/store';
 
 export default function Home() {
+	const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
+	const dispatch = useDispatch();
+
 	return (
 		<main>
+			<AuthenticationModal isOpen={isAuthOpen} />
 			{/* NAVBAR */}
 			<nav className={styles.nav}>
 				<div className={styles.nav__wrapper}>
@@ -21,6 +31,7 @@ export default function Home() {
 					<ul className={styles['nav__list--wrapper']}>
 						<li
 							className={`${styles.nav__list} ${styles['nav__list--login']}`}
+							onClick={() => dispatch(setIsAuthOpen())}
 						>
 							Login
 						</li>
@@ -48,11 +59,12 @@ export default function Home() {
 
 			{/* LANDING */}
 			<section id="landing">
-				<div className="container">
-					<div className="row">
+				<div className="personal-container">
+					<div className="personal-row">
 						<div className={styles.landing__wrapper}>
 							<div className={styles.landing__content}>
 								<div className={styles.landing__content__title}>
+								
 									Gain more knowledge
 									<br className={styles['remove--tablet']} />
 									in less time
@@ -72,13 +84,17 @@ export default function Home() {
 
 								<button
 									className={`btn ${styles['home__cta--btn']}`}
+									onClick={() => dispatch(setIsAuthOpen())}
 								>
 									Login
 								</button>
 							</div>
 
 							<figure className={styles['landing__image--mask']}>
-								<img src="/assets/landing.png" alt="Summarist" />
+								<img
+									src="/assets/landing.png"
+									alt="Summarist"
+								/>
 							</figure>
 						</div>
 					</div>
@@ -87,8 +103,8 @@ export default function Home() {
 
 			{/* FEATURES */}
 			<section id="features">
-				<div className="container">
-					<div className="row">
+				<div className="personal-container">
+					<div className="personal-row">
 						<div className={styles.section__title}>
 							Understand books in few minutes
 						</div>
@@ -343,8 +359,8 @@ export default function Home() {
 
 			{/* REVIEWS */}
 			<section id="reviews">
-				<div className="row">
-					<div className="container">
+				<div className="personal-row">
+					<div className="personal-container">
 						<div className={styles.section__title}>
 							What our members say
 						</div>
@@ -431,6 +447,7 @@ export default function Home() {
 						<div className={styles['reviews__btn--wrapper']}>
 							<button
 								className={`btn ${styles['home__cta--btn']}`}
+								onClick={() => dispatch(setIsAuthOpen())}
 							>
 								Login
 							</button>
@@ -441,8 +458,8 @@ export default function Home() {
 
 			{/* NUMBERS */}
 			<section id="numbers">
-				<div className="container">
-					<div className="row">
+				<div className="personal-container">
+					<div className="personal-row">
 						<div className={styles.section__title}>
 							Start growing with Summarist now
 						</div>
@@ -498,8 +515,8 @@ export default function Home() {
 
 			{/* FOOTER */}
 			<section className={styles.footer} id="footer">
-				<div className="container">
-					<div className="row">
+				<div className="personal-container">
+					<div className="personal-row">
 						<div className={styles['footer__top--wrapper']}>
 							<div className={styles.footer__block}>
 								<div className={styles['footer__link--title']}>

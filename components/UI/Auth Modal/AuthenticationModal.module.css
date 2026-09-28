@@ -1,0 +1,13 @@
+.auth__separator{
+    display: flex;
+    align-items: center; 
+    margin: 16px 0;
+}
+
+.auth__separator:before,.auth__separator::after{
+    content: '';
+    display: block;
+    flex-grow: 1;
+    height: 1px;;
+    background: #bac8ce;
+}
