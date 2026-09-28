@@ -5,7 +5,7 @@ import { BiCrown } from 'react-icons/bi';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { RiLeafLine } from 'react-icons/ri';
 import styles from './page.module.css';
-import AuthenticationModal from '@/components/Home/Auth Modal/AuthenticationModal';
+import AuthenticationModal from '@/components/UI/Auth Modal/AuthenticationModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsAuthOpen } from '@/redux/slices/authSlice';
 import type { RootState } from '@/redux/store';

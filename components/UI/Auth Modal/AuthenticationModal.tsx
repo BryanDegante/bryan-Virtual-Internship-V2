@@ -1,6 +1,6 @@
 'use client';
 import { IoPerson } from 'react-icons/io5';
-import styles from '@/components/Home/Auth Modal/AuthenticationModal.module.css';
+import styles from '@/components/UI/Auth Modal/AuthenticationModal.module.css';
 import { IoMdClose } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { setIsAuthOpen } from '@/redux/slices/authSlice';
@@ -11,7 +11,7 @@ import {
 	signInAnonymously,
 } from 'firebase/auth';
 import { auth } from '@/firebase/firebase';
-import { useRouter } from 'next/navigation';
+import { useRouter,usePathname } from 'next/navigation';
 
 type AuthenticationModalProps = {
 	isOpen: boolean;
@@ -25,12 +25,15 @@ const AuthenticationModal = ({ isOpen }: AuthenticationModalProps) => {
 
 	const router = useRouter();
 	const dispatch = useDispatch();
+	const pathname = usePathname();
+	const path = pathname === '/' ? '/for-you' : pathname;
 
 	const handleRegister = async () => {
 		try {
 			setErrorMessage('');
 			await createUserWithEmailAndPassword(auth, email, password);
-			router.push('/for-you');
+			dispatch(setIsAuthOpen());
+			router.push(path);
 		} catch (error) {
 			setErrorMessage(
 				'Unable to create account. Please check your information.',
@@ -42,7 +45,8 @@ const AuthenticationModal = ({ isOpen }: AuthenticationModalProps) => {
 		try {
 			setErrorMessage('');
 			await signInWithEmailAndPassword(auth, email, password);
-			router.push('/for-you');
+			dispatch(setIsAuthOpen());
+			router.push(path);
 		} catch (error) {
 			setErrorMessage('Email or Password is Incorrect');
 		}
@@ -52,7 +56,8 @@ const AuthenticationModal = ({ isOpen }: AuthenticationModalProps) => {
 		try {
 			setErrorMessage('');
 			await signInAnonymously(auth);
-			router.push('/for-you');
+			dispatch(setIsAuthOpen());
+			router.push(path);
 		} catch {
 			setErrorMessage('Something went wrong');
 		}

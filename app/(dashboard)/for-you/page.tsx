@@ -1,9 +1,5 @@
-import Sidebar from "@/components/For-You/Sidebar/Sidebar";
+import Sidebar from '@/components/UI/Sidebar/Sidebar';
 
 export default function forYou() {
-    return (
-        <div>
-            for you
-        </div>
-    )
+	return <div>for you</div>;
 }
