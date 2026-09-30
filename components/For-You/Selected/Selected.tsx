@@ -1,4 +1,5 @@
 import { Book } from '@/types/Book';
+import Link from 'next/link';
 import {FaPlayCircle } from 'react-icons/fa';
 
 export default async function Selected() {
@@ -10,8 +11,9 @@ export default async function Selected() {
 	const book = data[0];
 
 	return (
-		<div className="p-6 mb-6 bg-[#fbefd6] rounded-sm flex justify-between gap-6 w-[calc((100%/3)*2)] cursor-pointer">
-			<div className="w-2/5">{book.subTitle}</div>
+		<Link href={`/book/${book.id}`}>
+		<div className="p-6 mb-6 bg-[#fbefd6] rounded-sm flex justify-between gap-6 w-[calc((100%/3)*2)]">
+			<div className="w-2/5 text-text">{book.subTitle}</div>
 			<div className="w-px bg-[#bac8ce] "></div>
 			<div className='flex gap-4 w-3/5'>
 				<figure className='h-35 w-35 min-w-35'>
@@ -29,5 +31,6 @@ export default async function Selected() {
 				</div>
 			</div>
 		</div>
+		</Link>
 	);
 }
