@@ -11,7 +11,7 @@ export default function BookCard({ book }: BookCardProps) {
 	return (
 		<Link
 			href={`/book/${book.id}`}
-			className="relative rounded-sm max-w-50 w-full px-3 pb-3 pt-8 hover:bg-[#f1f6f4]"
+			className="relative rounded-sm max-w-50 w-full px-3 pb-3 pt-8 hover:bg-[#f1f6f4] "
 		>
 			{book.subscriptionRequired && (
 				<div className="absolute bg-text text-white rounded-4xl top-0 right-0 text-sm px-2 py-1 ">
@@ -24,12 +24,10 @@ export default function BookCard({ book }: BookCardProps) {
 			<div className="text-base font-bold text-text mb-2">
 				{book.title}
 			</div>
-			<div className="text-sm text-[#6b757b] font-light mb-2">
+			<div className="text-sm text-[#6b757b] font-light mb-2 leading-4">
 				{book.author}
 			</div>
-			<div
-				className="text-sm text-[#394547]  mb-2"
-			>
+			<div className="text-sm text-[#394547]  mb-2 leading-4">
 				{book.subTitle}
 			</div>
 			<div className="flex gap-2">
