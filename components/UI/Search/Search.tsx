@@ -8,17 +8,26 @@ import SearchModal from './SearchModal';
 export default function Search() {
 	const [userInput, setUserInput] = useState('');
 	const [apiSearchResults, setApiSearchResults] = useState<Book[]>([]);
+	const [isLoading, setIsLoading] = useState(false);
+
 	useEffect(() => {
 		const timer = setTimeout(async () => {
 			if (!userInput.trim()) {
 				setApiSearchResults([]);
+				setIsLoading(false);
 				return;
-			};
+			}
+
+			setIsLoading(true);
+
 			const res = await fetch(
 				`https://us-central1-summaristt.cloudfunctions.net/getBooksByAuthorOrTitle?search=${userInput}`,
 			);
+
 			const data: Book[] = await res.json();
+
 			setApiSearchResults(data);
+			setIsLoading(false);
 		}, 300);
 
 		return () => {
@@ -29,6 +38,7 @@ export default function Search() {
 	function clearSearch() {
 		setUserInput('');
 		setApiSearchResults([]);
+		setIsLoading(false);
 	}
 
 	return (
@@ -58,7 +68,13 @@ export default function Search() {
 				</div>
 			</div>
 
-			{apiSearchResults.length > 0 &&<SearchModal Books={apiSearchResults} clearSearch={clearSearch} />}
+			{(isLoading || apiSearchResults.length > 0) && (
+				<SearchModal
+					Books={apiSearchResults}
+					clearSearch={clearSearch}
+					isLoading={isLoading}
+				/>
+			)}
 		</div>
 	);
 }

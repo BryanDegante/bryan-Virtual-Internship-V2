@@ -11,10 +11,10 @@ export default function BookCard({ book }: BookCardProps) {
 	return (
 		<Link
 			href={`/book/${book.id}`}
-			className="relative rounded-sm max-w-50 w-full px-3 pb-3 pt-8 hover:bg-[#f1f6f4] "
+			className="relative rounded-sm max-w-50 w-full px-3 pt-8 hover:bg-[#f1f6f4] "
 		>
 			{book.subscriptionRequired && (
-				<div className="absolute bg-text text-white rounded-4xl top-0 right-0 text-sm px-2 py-1 ">
+				<div className="absolute bg-text text-white rounded-[20px] top-0 right-0 text-[10px] px-2 h-4.5 flex items-center">
 					Premium
 				</div>
 			)}
