@@ -21,13 +21,13 @@ export default function BookCard({ book }: BookCardProps) {
 			<figure className="w-43 h-43 mb-2">
 				<img src={book.imageLink} alt="" />
 			</figure>
-			<div className="text-base font-bold text-text mb-2">
+			<div className="text-base font-bold text-text mb-2 leading-5">
 				{book.title}
 			</div>
 			<div className="text-sm text-[#6b757b] font-light mb-2 leading-4">
 				{book.author}
 			</div>
-			<div className="text-sm text-[#394547]  mb-2 leading-4">
+			<div className="text-sm text-[#394547]  mb-2 leading-4 ">
 				{book.subTitle}
 			</div>
 			<div className="flex gap-2">
