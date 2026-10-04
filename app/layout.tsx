@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 const roboto = Roboto({
 	subsets: ['latin'],
 	weight: ['100', '300', '400', '500', '700', '900'],
+	fallback: ['sans-serif'],
 });
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {

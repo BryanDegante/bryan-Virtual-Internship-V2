@@ -67,7 +67,7 @@ const AuthenticationModal = ({ isOpen }: AuthenticationModalProps) => {
 		<div className="fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.75)] flex justify-center items-center flex-col  z-10">
 			<div className="relative w-full max-w-100 bg-white rounded-lg shadow-lg">
 				<div className="pt-12 pb-6 px-8">
-					<div className="text-center text-xl font-bold text-[#032b41] mb-6">
+					<div className="text-center text-xl font-bold text-text mb-6">
 						{isLogin
 							? 'Log in to Summarist'
 							: 'Sign up to Summarist'}
