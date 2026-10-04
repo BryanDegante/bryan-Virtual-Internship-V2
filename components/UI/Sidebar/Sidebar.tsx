@@ -33,7 +33,7 @@ export default function Sidebar() {
 				<div className="flex-1 mt-10">
 					<Link
 						href="/for-you"
-						className="flex items-center h-14 text-[#032b41] mb-2 cursor-pointer hover:bg-[#f0efef]"
+						className="flex items-center h-14 text-text mb-2 cursor-pointer hover:bg-[#f0efef]"
 					>
 						<div
 							className={`w-1.25 h-full mr-4 ${
@@ -49,7 +49,7 @@ export default function Sidebar() {
 					</Link>
 					<Link
 						href="/library"
-						className="flex items-center h-14 text-[#032b41] mb-2 cursor-pointer hover:bg-[#f0efef]"
+						className="flex items-center h-14 text-text mb-2 cursor-pointer hover:bg-[#f0efef]"
 					>
 						<div
 							className={`w-1.25 h-full mr-4 ${
@@ -63,14 +63,14 @@ export default function Sidebar() {
 						</div>
 						<span>My Library</span>
 					</Link>
-					<div className="flex items-center h-14 text-[#032b41] mb-2 cursor-not-allowed">
+					<div className="flex items-center h-14 text-text mb-2 cursor-not-allowed">
 						<div className="w-1.25 h-full mr-4"></div>
 						<div className="flex items-center justify-center mr-2">
 							<RiBallPenLine className="w-6 h-6" />
 						</div>
 						<span>Highlights</span>
 					</div>
-					<div className="flex items-center h-14 text-[#032b41] mb-2 cursor-not-allowed">
+					<div className="flex items-center h-14 text-text mb-2 cursor-not-allowed">
 						<div className="w-1.25 h-full mr-4"></div>
 						<div className="flex items-center justify-center mr-2">
 							<IoIosSearch className="w-6 h-6" />
@@ -81,7 +81,7 @@ export default function Sidebar() {
 				<div>
 					<Link
 						href="/settings"
-						className="flex items-center h-14 text-[#032b41] mb-2 cursor-pointer hover:bg-[#f0efef]"
+						className="flex items-center h-14 text-text mb-2 cursor-pointer hover:bg-[#f0efef]"
 					>
 						<div
 							className={`w-1.25 h-full mr-4 ${
@@ -95,7 +95,7 @@ export default function Sidebar() {
 						</div>
 						<span>Settings</span>
 					</Link>
-					<div className="flex items-center h-14 text-[#032b41] mb-2 cursor-not-allowed">
+					<div className="flex items-center h-14 text-text mb-2 cursor-not-allowed">
 						<div className="w-1.25 h-full mr-4"></div>
 						<div className="flex items-center justify-center mr-2">
 							<IoMdHelpCircleOutline className="w-6 h-6" />
@@ -110,7 +110,7 @@ export default function Sidebar() {
 								dispatch(setIsAuthOpen());
 							}
 						}}
-						className="flex items-center w-full h-14 text-[#032b41] mb-2 cursor-pointer hover:bg-[#f0efef]"
+						className="flex items-center w-full h-14 text-text mb-2 cursor-pointer hover:bg-[#f0efef]"
 					>
 						<div className="w-1.25 h-full mr-4"></div>
 						<div className="flex items-center justify-center mr-2">

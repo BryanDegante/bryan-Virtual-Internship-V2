@@ -2,8 +2,8 @@ import { Book } from '@/types/Book';
 import { FaRegStar, FaRegClock } from 'react-icons/fa';
 import { HiOutlineLightBulb } from 'react-icons/hi';
 import { IoMicOutline } from 'react-icons/io5';
-import { LiaReadme } from 'react-icons/lia';
 import { CiBookmark } from 'react-icons/ci';
+import ReadListenButton from '@/components/UI/Book/ReadListenButton';
 
 export default async function BookDetails({
 	params,
@@ -21,7 +21,7 @@ export default async function BookDetails({
 				<div className="flex gap-4 max-[1000px]:flex-col-reverse max-[1000px]:gap-8">
 					<div className="w-full">
 						<div className="text-text mb-4 font-semibold text-[32px]">
-							{data.title}
+							{data.subscriptionRequired ? data.title + ' (Premium)' : data.title }
 						</div>
 						<div className="text-text mb-4 font-semibold">
 							{data.author}
@@ -42,7 +42,7 @@ export default async function BookDetails({
 								</div>
 								<div className="flex items-center w-[50%] text-text font-medium text-sm">
 									<IoMicOutline className="flex h-6 w-6 mr-1" />
-									<div>Audio & Text</div>
+									<div>{data.type}</div>
 								</div>
 								<div className="flex items-center w-[50%] text-text font-medium text-sm">
 									<HiOutlineLightBulb className="flex h-6 w-6 mr-1" />
@@ -51,16 +51,16 @@ export default async function BookDetails({
 							</div>
 						</div>
 						<div className="flex gap-4 mb-6">
-							<button className="flex items-center justify-center w-36 h-12 bg-text text-white text-base rounded-sm cursor-pointer gap-2 transition-opacity hover:opacity-80">
-								<div className="flex">
-									<LiaReadme className=" w-6 h-6 text-white" />
-								</div>
-								Read
-							</button>
-							<button className="flex items-center justify-center w-36 h-12 bg-text text-white text-base rounded-sm cursor-pointer gap-2 transition-opacity hover:opacity-80">
-								<IoMicOutline className=" w-6 h-6 text-white" />
-								Listen
-							</button>
+							<ReadListenButton
+								audible="read"
+								subscriptionRequired={data.subscriptionRequired}
+								bookId={data.id}
+							/>
+							<ReadListenButton
+								audible="listen"
+								subscriptionRequired={data.subscriptionRequired}
+								bookId={data.id}
+							/>
 						</div>
 						<div className="flex items-center gap-2 text-[#0365f2] font-medium cursor-pointer mb-10 text-lg transition-colors hover:text-[#044298]">
 							<CiBookmark className=" w-6 h-6" />
@@ -70,12 +70,14 @@ export default async function BookDetails({
 							What's it about?
 						</div>
 						<div className="flex flex-wrap gap-4 mb-4">
-							<div className="bg-[#f1f6f4] px-4 h-12 flex items-center cursor-not-allowed text-text font-medium rounded-sm ">
-								Biography & Memoir
-							</div>
-							<div className="bg-[#f1f6f4] px-4 h-12 flex items-center cursor-not-allowed text-text font-medium rounded-sm ">
-								Personal Development
-							</div>
+							{data.tags.map((tag, index) => (
+								<div
+									key={index}
+									className="bg-[#f1f6f4] px-4 h-12 flex items-center cursor-not-allowed text-text font-medium rounded-sm "
+								>
+									{tag}
+								</div>
+							))}
 						</div>
 						<div className="text-text mb-4 leading-normal">
 							{data.bookDescription}
