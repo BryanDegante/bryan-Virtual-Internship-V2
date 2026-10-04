@@ -7,7 +7,7 @@ import { CiBookmark } from 'react-icons/ci';
 import { IoBookmark } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from '@/firebase/firebase';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc,deleteDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 
 type LibraryButtonProp = {
@@ -44,9 +44,16 @@ export default function LibraryButton({ book }: LibraryButtonProp) {
 			dispatch(setIsAuthOpen());
 		} else {
 			try {
-				const bookRef = doc(db, 'users', user.uid, 'library', book.id);
-				await setDoc(bookRef, book);
-				setIsSaved(true);
+                const bookRef = doc(db, 'users', user.uid, 'library', book.id);
+                if (isSaved) {
+                    await deleteDoc(bookRef)
+                    setIsSaved(false)
+                }
+                else {
+                    
+                    await setDoc(bookRef, book);
+                    setIsSaved(true);
+                }
 			} catch (error) {
 				console.error(error);
 			}
