@@ -2,8 +2,8 @@ import { Book } from '@/types/Book';
 import { FaRegStar, FaRegClock } from 'react-icons/fa';
 import { HiOutlineLightBulb } from 'react-icons/hi';
 import { IoMicOutline } from 'react-icons/io5';
-import { CiBookmark } from 'react-icons/ci';
 import ReadListenButton from '@/components/UI/Book/ReadListenButton';
+import LibraryButton from '@/components/UI/Book/LibraryButton';
 
 export default async function BookDetails({
 	params,
@@ -21,7 +21,9 @@ export default async function BookDetails({
 				<div className="flex gap-4 max-[1000px]:flex-col-reverse max-[1000px]:gap-8">
 					<div className="w-full">
 						<div className="text-text mb-4 font-semibold text-[32px]">
-							{data.subscriptionRequired ? data.title + ' (Premium)' : data.title }
+							{data.subscriptionRequired
+								? data.title + ' (Premium)'
+								: data.title}
 						</div>
 						<div className="text-text mb-4 font-semibold">
 							{data.author}
@@ -62,10 +64,7 @@ export default async function BookDetails({
 								bookId={data.id}
 							/>
 						</div>
-						<div className="flex items-center gap-2 text-[#0365f2] font-medium cursor-pointer mb-10 text-lg transition-colors hover:text-[#044298]">
-							<CiBookmark className=" w-6 h-6" />
-							Add title to My Library
-						</div>
+            <LibraryButton book={data} />
 						<div className="text-text mb-4 text-lg font-semibold">
 							What's it about?
 						</div>
