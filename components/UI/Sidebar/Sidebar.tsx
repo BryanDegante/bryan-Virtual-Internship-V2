@@ -1,7 +1,7 @@
 'use client';
 import { AiOutlineHome } from 'react-icons/ai';
 import { CiBookmark, CiSettings } from 'react-icons/ci';
-import { RiBallPenLine } from 'react-icons/ri';
+import { RiBallPenLine, RiFontSize } from 'react-icons/ri';
 import { IoIosSearch, IoMdHelpCircleOutline } from 'react-icons/io';
 import { MdOutlineLogout } from 'react-icons/md';
 import Link from 'next/link';
@@ -12,10 +12,12 @@ import { setIsAuthOpen } from '@/redux/slices/authSlice';
 import type { RootState } from '@/redux/store';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebase/firebase';
+import { setFontSize } from '@/redux/slices/fontSlice';
 
 export default function Sidebar() {
 	const pathname = usePathname();
 	const user = useSelector((state: RootState) => state.auth.user);
+	const fontSize = useSelector((state: RootState) => state.playerfont.fontSize);
 	const isPlayerPage = pathname.startsWith('/player/');
 	const dispatch = useDispatch();
 
@@ -82,6 +84,62 @@ export default function Sidebar() {
 						</div>
 						<span>Search</span>
 					</div>
+					{isPlayerPage && (
+						<div className="flex items-center ml-6 gap-2 h-14 text-text ">
+							<button
+								className="flex flex-col items-center justify-center cursor-pointer w-8 h-8"
+								onClick={() => dispatch(setFontSize('base'))}
+							>
+								<RiFontSize className="w-5 h-5" />
+								<div
+									className={`w-full h-1 ${
+										fontSize === 'base'
+											? 'bg-[#2bd97c]'
+											: 'bg-transparent'
+									}`}
+								></div>
+							</button>
+							<button
+								className="flex flex-col items-center justify-center cursor-pointer w-8 h-8"
+								onClick={() => dispatch(setFontSize('large'))}
+							>
+								<RiFontSize className="w-6 h-6" />
+								<div
+									className={`w-full h-1 ${
+										fontSize === 'large'
+											? 'bg-[#2bd97c]'
+											: 'bg-transparent'
+									}`}
+								></div>
+							</button>
+							<button
+								className="flex flex-col items-center justify-center cursor-pointer w-8 h-8"
+								onClick={() => dispatch(setFontSize('extra'))}
+							>
+								<RiFontSize className="w-7 h-7" />
+								<div
+									className={`w-full h-1 ${
+										fontSize === 'extra'
+											? 'bg-[#2bd97c]'
+											: 'bg-transparent'
+									}`}
+								></div>
+							</button>
+							<button
+								className="flex flex-col items-center justify-center cursor-pointer w-9 h-9"
+								onClick={() => dispatch(setFontSize('double'))}
+							>
+								<RiFontSize className="w-9 h-9" />
+								<div
+									className={`w-full h-1 ${
+										fontSize === 'double'
+											? 'bg-[#2bd97c]'
+											: 'bg-transparent'
+									}`}
+								></div>
+							</button>
+						</div>
+					)}
 				</div>
 				<div>
 					<Link

@@ -1,5 +1,6 @@
 import { Book } from '@/types/Book';
 import AudioPlayer from '@/components/UI/Audio Player/AudioPlayer';
+import AudioSummary from '@/components/Player/AudioSummary';
 
 export default async function Player({
 	params,
@@ -17,9 +18,7 @@ export default async function Player({
 				<div className="text-text text-2xl mb-8 pb-4 leading-normal border-b border-[#e1e7ea] font-bold">
 					{data.title}
 				</div>
-				<div className="whitespace-pre-line leading-[1.4] text-text">
-					{data.summary}
-				</div>
+				<AudioSummary summary={data.summary} />
 			</div>
             <AudioPlayer title={data.title} imageLink={data.imageLink} author={data.author} audioLink={data.audioLink} />
 		</div>
