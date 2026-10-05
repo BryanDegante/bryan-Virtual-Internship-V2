@@ -16,20 +16,25 @@ import { auth } from '@/firebase/firebase';
 export default function Sidebar() {
 	const pathname = usePathname();
 	const user = useSelector((state: RootState) => state.auth.user);
+	const isPlayerPage = pathname.startsWith('/player/');
 	const dispatch = useDispatch();
 
 	const handleLogout = async () => {
 		await signOut(auth);
 	};
 
-
-
 	return (
 		<div className="bg-[#f7faf9] w-50 min-w-50 fixed top-0 left-0 h-dvh z-10 transition-all duration-300">
 			<div className="flex items-center justify-center h-15 pt-4 max-w-40 mx-auto">
 				<img src="/assets/logo.png" className="w-full h-10 " alt="" />
 			</div>
-			<div className="flex flex-col justify-between pb-5 h-[calc(100vh-60px)] overflow-y-auto">
+			<div
+				className={`flex flex-col justify-between pb-5 ${
+					isPlayerPage
+						? 'h-[calc(100vh-140px)]'
+						: 'h-[calc(100vh-60px)]'
+				} overflow-y-auto`}
+			>
 				<div className="flex-1 mt-10">
 					<Link
 						href="/for-you"
