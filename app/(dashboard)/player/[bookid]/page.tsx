@@ -1,6 +1,4 @@
 import { Book } from '@/types/Book';
-import { RiForward10Line, RiReplay10Line } from 'react-icons/ri';
-import { FaPlayCircle } from 'react-icons/fa';
 import AudioPlayer from '@/components/UI/Audio Player/AudioPlayer';
 
 export default async function Player({
