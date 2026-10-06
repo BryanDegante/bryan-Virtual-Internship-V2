@@ -54,15 +54,6 @@ export default function ChoosePlan() {
 						</div>
 					</div>
 					<SelectedPlan />
-					<div className="bg-white sticky bottom-0 z-10 py-8 flex flex-col items-center gap-4">
-						<button className="bg-[#2bd97c] text-text w-75 h-10 rounded-sm text-base flex items-center justify-center min-w-45 transition-colors duration-200 hover:bg-[#20ba68] ">
-							Start your free 7-day trial
-						</button>
-						<div className="text-[12px] text-[#6b757b] text-center">
-							Cancel your trial at any time before it ends, and
-							you won't be charged.
-						</div>
-					</div>
 					<Faq />
 				</div>
 			</div>
