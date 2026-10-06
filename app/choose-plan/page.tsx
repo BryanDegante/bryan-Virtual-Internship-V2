@@ -1,8 +1,8 @@
 import { IoDocumentTextSharp } from 'react-icons/io5';
 import { RiPlantFill } from 'react-icons/ri';
 import { FaHandshake } from 'react-icons/fa';
-import { IoIosArrowUp } from 'react-icons/io';
 import SelectedPlan from '@/components/Choose-plan/SelectedPlan';
+import Faq from '@/components/Choose-plan/Faq';
 
 export default function ChoosePlan() {
 	return (
@@ -63,83 +63,7 @@ export default function ChoosePlan() {
 							you won't be charged.
 						</div>
 					</div>
-					<div>
-						<div className="border-b border-[#ddd] mb-2 overflow-hidden">
-							<div className="flex justify-between items-center cursor-pointer py-6 gap-2">
-								<div className="font-medium text-2xl relative mb-0 text-text transition-all duration-300">
-									How does the free 7-day trial work?{' '}
-								</div>
-								<IoIosArrowUp className="w-6 h-6 min-w-6 transition-transform duration-300" />
-							</div>
-							<div className="relative overflow-hidden transition-[height] duration-350 ease-[ease]">
-								<div className="min-h-px pb-6 text-[#394547] leading-normal">
-									Begin your complimentary 7-day trial with a
-									Summarist annual membership. You are under
-									no obligation to continue your subscription,
-									and you will only be billed when the trial
-									period expires. With Premium access, you can
-									learn at your own pace and as frequently as
-									you desire, and you may terminate your
-									subscription prior to the conclusion of the
-									7-day free trial.
-								</div>
-							</div>
-						</div>
-						<div className="border-b border-[#ddd] mb-2 overflow-hidden">
-							<div className="flex justify-between items-center cursor-pointer py-6 gap-2">
-								<div className="font-medium text-2xl relative mb-0 text-text transition-all duration-300">
-									Can I switch subscriptions from monthly to
-									yearly, or yearly to monthly?
-								</div>
-								<IoIosArrowUp className="w-6 h-6 min-w-6 transition-transform duration-300" />
-							</div>
-							<div className="relative overflow-hidden transition-[height] duration-350 ease-[ease]">
-								<div className="min-h-px pb-6 text-[#394547] leading-normal">
-									While an annual plan is active, it is not
-									feasible to switch to a monthly plan.
-									However, once the current month ends,
-									transitioning from a monthly plan to an
-									annual plan is an option.
-								</div>
-							</div>
-						</div>
-						<div className="border-b border-[#ddd] mb-2 overflow-hidden">
-							<div className="flex justify-between items-center cursor-pointer py-6 gap-2">
-								<div className="font-medium text-2xl relative mb-0 text-text transition-all duration-300">
-									What's included in the Premium plan?
-								</div>
-								<IoIosArrowUp className="w-6 h-6 min-w-6 transition-transform duration-300" />
-							</div>
-							<div className="relative overflow-hidden transition-[height] duration-350 ease-[ease]">
-								<div className="min-h-px pb-6 text-[#394547] leading-normal">
-									Premium membership provides you with the
-									ultimate Summarist experience, including
-									unrestricted entry to many best-selling
-									books high-quality audio, the ability to
-									download titles for offline reading, and the
-									option to send your reads to your Kindle.
-								</div>
-							</div>
-						</div>
-						<div className="border-b border-[#ddd] mb-2 overflow-hidden">
-							<div className="flex justify-between items-center cursor-pointer py-6 gap-2">
-								<div className="font-medium text-2xl relative mb-0 text-text transition-all duration-300">
-									Can I cancel during my trial or
-									subscription?
-								</div>
-								<IoIosArrowUp className="w-6 h-6 min-w-6 transition-transform duration-300" />
-							</div>
-							<div className="relative overflow-hidden transition-[height] duration-350 ease-[ease]">
-								<div className="min-h-px pb-6 text-[#394547] leading-normal">
-									You will not be charged if you cancel your
-									trial before its conclusion. While you will
-									not have complete access to the entire
-									Summarist library, you can still expand your
-									knowledge with one curated book per day.
-								</div>
-							</div>
-						</div>
-					</div>
+					<Faq />
 				</div>
 			</div>
 			<section className="bg-[#f1f6f4]">
