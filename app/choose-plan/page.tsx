@@ -2,6 +2,7 @@ import { IoDocumentTextSharp } from 'react-icons/io5';
 import { RiPlantFill } from 'react-icons/ri';
 import { FaHandshake } from 'react-icons/fa';
 import { IoIosArrowUp } from 'react-icons/io';
+import SelectedPlan from '@/components/Choose-plan/SelectedPlan';
 
 export default function ChoosePlan() {
 	return (
@@ -52,42 +53,7 @@ export default function ChoosePlan() {
 							</div>
 						</div>
 					</div>
-					<div className="text-[32px] text-text text-center mb-8 font-bold">
-						Choose the plan that fits you
-					</div>
-					<div className="flex gap-6  p-6 bg-[#f1f6f4] rounded-sm cursor-pointer max-w-170 mx-auto border-4 border-[#bac8ce]">
-						<div className="relative w-6 h-6 rounded-[50%] border-2 border-black flex items-center justify-center"></div>
-						<div>
-							<div className="text-lg font-semibold text-text mb-2">
-								Premium Plus Yearly
-							</div>
-							<div className="text-2xl font-bold text-text mb-2">
-								$99.99/year
-							</div>
-							<div className="text-[#6b757b] text-sm">
-								7-day free trial included
-							</div>
-						</div>
-					</div>
-					<div className="text-sm text-[#6b757b] flex items-center gap-2 max-w-60 my-6 mx-auto">
-						<div className="grow h-px bg-[#bac8ce]" />
-						or
-						<div className="grow h-px bg-[#bac8ce]" />
-					</div>
-					<div className="flex gap-6  p-6 bg-[#f1f6f4] rounded-sm cursor-pointer max-w-170 mx-auto border-4 border-[#bac8ce]">
-						<div className="relative w-6 h-6 rounded-[50%] border-2 border-black flex items-center justify-center"></div>
-						<div>
-							<div className="text-lg font-semibold text-text mb-2">
-								Premium Monthly
-							</div>
-							<div className="text-2xl font-bold text-text mb-2">
-								$9.99/month
-							</div>
-							<div className="text-[#6b757b] text-sm">
-								No trial included
-							</div>
-						</div>
-					</div>
+					<SelectedPlan />
 					<div className="bg-white sticky bottom-0 z-10 py-8 flex flex-col items-center gap-4">
 						<button className="bg-[#2bd97c] text-text w-75 h-10 rounded-sm text-base flex items-center justify-center min-w-45 transition-colors duration-200 hover:bg-[#20ba68] ">
 							Start your free 7-day trial
