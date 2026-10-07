@@ -64,7 +64,7 @@ export default async function BookDetails({
 								bookId={data.id}
 							/>
 						</div>
-            <LibraryButton book={data} />
+						<LibraryButton book={data} />
 						<div className="text-text mb-4 text-lg font-semibold">
 							What's it about?
 						</div>
