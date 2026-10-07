@@ -1,16 +1,26 @@
 'use client';
 
 import { useState } from 'react';
+import { auth } from '@/firebase/firebase';
 import PlanButton from './PlanButton';
 
 export default function SelectedPlan() {
 	const [selectedPlan, setSelectedPlan] = useState('yearly');
 
 	const handleCheckout = async () => {
+		const user = auth.currentUser;
+
+		if (!user) {
+			return;
+		}
+
+		const idToken = await user.getIdToken();
+
 		const response = await fetch('/api/checkout', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+				Authorization: `Bearer ${idToken}`,
 			},
 			body: JSON.stringify({
 				plan: selectedPlan,
