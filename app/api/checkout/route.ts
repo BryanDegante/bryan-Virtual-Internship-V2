@@ -43,11 +43,16 @@ export async function POST(request: Request) {
 				},
 			],
 
-			...(plan === 'yearly' && {
-				subscription_data: {
-					trial_period_days: 7,
+			subscription_data: {
+				metadata: {
+					firebaseUid: uid,
+					plan,
 				},
-			}),
+
+				...(plan === 'yearly' && {
+					trial_period_days: 7,
+				}),
+			},
 
 			client_reference_id: uid,
 
