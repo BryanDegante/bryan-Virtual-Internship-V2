@@ -6,26 +6,47 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '@/redux/store';
 import { setIsAuthOpen } from '@/redux/slices/authSlice';
 import { useRouter } from 'next/navigation';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
+
 type ReadListenButtonProps = {
 	audible: 'read' | 'listen';
 	subscriptionRequired: boolean;
 	bookId: string;
 };
 
-export default function ReadListenButton({ audible,subscriptionRequired,bookId }: ReadListenButtonProps) {
+export default function ReadListenButton({
+	audible,
+	subscriptionRequired,
+	bookId,
+}: ReadListenButtonProps) {
 	const user = useSelector((state: RootState) => state.auth.user);
 	const dispatch = useDispatch();
-	const router = useRouter(); 
+	const router = useRouter();
 
-	function handleClick() {
-		if(!user){
-			dispatch(setIsAuthOpen())
+	async function handleClick() {
+		if (!user) {
+			dispatch(setIsAuthOpen());
+			return;
 		}
-		else if (user && subscriptionRequired) {
-			router.push('/choose-plan')
+
+		if (!subscriptionRequired) {
+			router.push(`/player/${bookId}`);
+			return;
 		}
-		else{
-			router.push(`/player/${bookId}`)
+
+		const subscriptionRef = doc(db, 'users', user.uid);
+		const subscriptionSnap = await getDoc(subscriptionRef);
+
+		const subscription = subscriptionSnap.data()?.subscription;
+
+		if (
+			subscription?.status === 'active' ||
+			subscription?.status === 'trialing'
+		) {
+			router.push(`/player/${bookId}`);
+		} else {
+			router.push('/choose-plan');
 		}
 	}
 
@@ -36,11 +57,12 @@ export default function ReadListenButton({ audible,subscriptionRequired,bookId }
 		>
 			<div className="flex">
 				{audible === 'read' ? (
-					<LiaReadme className=" w-6 h-6 text-white" />
+					<LiaReadme className="w-6 h-6 text-white" />
 				) : (
-					<IoMicOutline className=" w-6 h-6 text-white" />
+					<IoMicOutline className="w-6 h-6 text-white" />
 				)}
 			</div>
+
 			{audible === 'read' ? 'Read' : 'Listen'}
 		</button>
 	);
