@@ -56,7 +56,8 @@ export async function POST(request: Request) {
 
 			client_reference_id: uid,
 
-			success_url: `${process.env.NEXT_PUBLIC_APP_URL}/choose-plan?success=true`,
+
+			success_url: `${process.env.NEXT_PUBLIC_APP_URL}/settings`,
 			cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/choose-plan?canceled=true`,
 		});
 

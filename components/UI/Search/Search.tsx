@@ -1,11 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { IoIosSearch, IoMdClose } from 'react-icons/io';
+import { IoIosSearch, IoMdClose, IoMdMenu } from 'react-icons/io';
 import { Book } from '@/types/Book';
 import SearchModal from './SearchModal';
 
-export default function Search() {
+type SearchProps = {
+	setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function Search({ setIsSidebarOpen }: SearchProps) {
 	const [userInput, setUserInput] = useState('');
 	const [apiSearchResults, setApiSearchResults] = useState<Book[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
@@ -43,8 +47,15 @@ export default function Search() {
 
 	return (
 		<div className="bg-white border-b border-[#e1e7ea] h-20 z-10">
-			<div className="relative flex items-center justify-end px-8 max-w-267.5 mx-auto h-full">
-				<div className="relative max-w-85 w-full">
+			<div className="relative flex items-center justify-between px-4 lg:px-8 max-w-267.5 mx-auto h-full">
+				<button
+					onClick={() => setIsSidebarOpen(true)}
+					className="lg:hidden cursor-pointer"
+				>
+					<IoMdMenu className="w-7 h-7 text-text" />
+				</button>
+
+				<div className="relative max-w-85 w-full ml-4 lg:ml-auto">
 					<input
 						type="text"
 						placeholder="Search for books"
