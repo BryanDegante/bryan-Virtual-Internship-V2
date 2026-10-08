@@ -71,4 +71,38 @@ button:disabled {
   animation: shimmer 1.5s infinite;
 }
 
+.audio-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  max-width: 300px;
+  height: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+
+  background: linear-gradient(to right,
+      rgb(43, 217, 124) var(--range-progress, 0%),
+      rgb(109, 120, 125) var(--range-progress, 0%));
+}
+
+.audio-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+}
+
+.audio-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+}
 
