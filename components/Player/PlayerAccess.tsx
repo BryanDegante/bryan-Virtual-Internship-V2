@@ -85,11 +85,8 @@ export default function PlayerAccess({ book }: PlayerAccessProps) {
 				</div>
 
 				<AudioPlayer
-					title={book.title}
-					imageLink={book.imageLink}
-					author={book.author}
-					audioLink={book.audioLink}
-				/>
+					book={book}
+/>
 			</>
 		);
 	}
@@ -128,11 +125,8 @@ export default function PlayerAccess({ book }: PlayerAccessProps) {
 			</div>
 
 			<AudioPlayer
-				title={book.title}
-				imageLink={book.imageLink}
-				author={book.author}
-				audioLink={book.audioLink}
-			/>
+					book={book}
+/>
 		</>
 	);
 }
