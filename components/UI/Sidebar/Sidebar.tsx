@@ -45,12 +45,12 @@ export default function Sidebar({
 			{isSidebarOpen && (
 				<div
 					onClick={() => setIsSidebarOpen(false)}
-					className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+					className="fixed inset-0 bg-black/40 z-10 lg:hidden"
 				/>
 			)}
 
 			<div
-				className={`fixed top-0 left-0 z-50 h-dvh transition-transform duration-300
+				className={`fixed top-0 left-0 z-10 h-dvh transition-transform duration-300
 		${isSidebarOpen ? 'translate-x-0' : '-translate-x-[calc(100%+2.5rem)]'}
 		lg:translate-x-0`}
 			>

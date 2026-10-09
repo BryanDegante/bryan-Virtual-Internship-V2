@@ -1,3 +1,4 @@
+import BookDuration from '@/components/UI/Book/BookDuration';
 import { Book } from '@/types/Book';
 import Link from 'next/link';
 import { FaPlayCircle } from 'react-icons/fa';
@@ -40,7 +41,7 @@ export default async function Selected() {
 								<FaPlayCircle className="w-full h-full bg-white rounded-[50%]" />
 							</div>
 
-							<div className="text-sm text-text">duration</div>
+							<div className="text-sm text-text"><BookDuration audioLink={book.audioLink} /></div>
 						</div>
 					</div>
 				</div>
