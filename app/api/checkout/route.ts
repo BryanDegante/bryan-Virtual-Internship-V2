@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 import { adminAuth } from '@/firebase/firebase-admin';
 
 export async function POST(request: Request) {
@@ -21,6 +21,10 @@ export async function POST(request: Request) {
 
 		const { plan } = await request.json();
 
+		if (plan !== 'yearly' && plan !== 'monthly') {
+			return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
+		}
+
 		const priceId =
 			plan === 'yearly'
 				? process.env.STRIPE_YEARLY_PRICE_ID
@@ -33,7 +37,8 @@ export async function POST(request: Request) {
 			);
 		}
 
-		const session = await stripe.checkout.sessions.create({
+		const origin = new URL(request.url).origin;
+		const session = await getStripe().checkout.sessions.create({
 			mode: 'subscription',
 
 			line_items: [
@@ -56,8 +61,8 @@ export async function POST(request: Request) {
 
 			client_reference_id: uid,
 
-			success_url: `${process.env.APP_URL}/settings`,
-			cancel_url: `${process.env.APP_URL}/choose-plan?canceled=true`,
+			success_url: new URL('/settings', origin).toString(),
+			cancel_url: new URL('/choose-plan?canceled=true', origin).toString(),
 		});
 
 		return NextResponse.json({ url: session.url });

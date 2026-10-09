@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 import { adminDb } from '@/firebase/firebase-admin';
 
 export async function POST(request: Request) {
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 	}
 
 	try {
-		const event = stripe.webhooks.constructEvent(
+		const event = getStripe().webhooks.constructEvent(
 			body,
 			signature,
 			process.env.STRIPE_WEBHOOK_SECRET!,

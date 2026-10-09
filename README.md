@@ -34,3 +34,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Vercel environment variables
+
+Add the following variables in the Vercel project settings for each environment
+you deploy, then redeploy:
+
+- Stripe checkout: `STRIPE_SECRET_KEY`, `STRIPE_MONTHLY_PRICE_ID`, and
+  `STRIPE_YEARLY_PRICE_ID`. The price IDs must be recurring prices from the
+  same Stripe mode as the secret key (test or live).
+- Firebase client: `NEXT_PUBLIC_FIREBASE_API_KEY`,
+  `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`,
+  `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`,
+  `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`, and `NEXT_PUBLIC_FIREBASE_APP_ID`.
+- Firebase Admin: `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, and
+  `FIREBASE_PRIVATE_KEY`. Store the private key with newline characters encoded
+  as `\n`.
+- Stripe webhooks: `STRIPE_WEBHOOK_SECRET` is needed for the
+  `/api/stripe/webhook` endpoint.
+
+Checkout return URLs use the current deployment's origin, so an `APP_URL`
+variable is not required.

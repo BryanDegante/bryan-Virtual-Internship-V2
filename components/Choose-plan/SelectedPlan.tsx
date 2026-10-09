@@ -5,32 +5,47 @@ import { auth } from '@/firebase/firebase';
 import PlanButton from './PlanButton';
 
 export default function SelectedPlan() {
-	const [selectedPlan, setSelectedPlan] = useState('yearly');
+	const [selectedPlan, setSelectedPlan] = useState<'yearly' | 'monthly'>(
+		'yearly',
+	);
+	const [isLoading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	const handleCheckout = async () => {
-		const user = auth.currentUser;
+		setErrorMessage('');
+		setIsLoading(true);
 
-		if (!user) {
-			return;
-		}
+		try {
+			const user = auth.currentUser;
+			if (!user) {
+				throw new Error('Please sign in before starting checkout.');
+			}
 
-		const idToken = await user.getIdToken();
+			const idToken = await user.getIdToken();
+			const response = await fetch('/api/checkout', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${idToken}`,
+				},
+				body: JSON.stringify({ plan: selectedPlan }),
+			});
+			const data: { url?: string; error?: string } =
+				await response.json();
 
-		const response = await fetch('/api/checkout', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${idToken}`,
-			},
-			body: JSON.stringify({
-				plan: selectedPlan,
-			}),
-		});
+			if (!response.ok || !data.url) {
+				throw new Error(data.error || 'Unable to start checkout.');
+			}
 
-		const data = await response.json();
-
-		if (data.url) {
-			window.location.href = data.url;
+			window.location.assign(data.url);
+		} catch (error) {
+			setErrorMessage(
+				error instanceof Error
+					? error.message
+					: 'Unable to start checkout. Please try again.',
+			);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -65,15 +80,24 @@ export default function SelectedPlan() {
 			<div className="bg-white sticky bottom-0 z-10 py-8 flex flex-col items-center gap-4">
 				<button
 					onClick={handleCheckout}
+					disabled={isLoading}
 					className="bg-[#2bd97c] text-text w-75 h-10 rounded-sm text-base flex items-center justify-center min-w-45 transition-colors duration-200 hover:bg-[#20ba68] cursor-pointer"
 				>
-					{selectedPlan === 'yearly'
+					{isLoading
+						? 'Redirecting to checkout...'
+						: selectedPlan === 'yearly'
 						? 'Start your free 7-day trial'
 						: 'Start your first month'}
 				</button>
 
+				{errorMessage && (
+					<p role="alert" className="text-sm text-red-600 text-center">
+						{errorMessage}
+					</p>
+				)}
+
 				<div className="text-[12px] text-[#6b757b] text-center">
-					Cancel your trial at any time before it ends, and you won't
+					Cancel your trial at any time before it ends, and you won&apos;t
 					be charged.
 				</div>
 			</div>
