@@ -4,6 +4,7 @@ import { HiOutlineLightBulb } from 'react-icons/hi';
 import { IoMicOutline } from 'react-icons/io5';
 import ReadListenButton from '@/components/UI/Book/ReadListenButton';
 import LibraryButton from '@/components/UI/Book/LibraryButton';
+import BookDuration from '@/components/UI/Book/BookDuration';
 
 export default async function BookDetails({
 	params,
@@ -47,7 +48,7 @@ export default async function BookDetails({
 
 								<div className="flex items-center w-full sm:w-[50%] text-text font-medium text-sm">
 									<FaRegClock className="flex h-6 w-6 mr-1 shrink-0" />
-									<div>duration</div>
+									<BookDuration audioLink={data.audioLink} />
 								</div>
 
 								<div className="flex items-center w-full sm:w-[50%] text-text font-medium text-sm">

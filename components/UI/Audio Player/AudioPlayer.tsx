@@ -114,7 +114,7 @@ export default function AudioPlayer({
 	const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
 	return (
-		<div className="w-full h-20 mt-auto flex items-center justify-between bg-[#042330] px-10 fixed bottom-0 left-0 z-10">
+		<div className="w-full h-20 mt-auto flex items-center justify-between bg-[#042330] px-10 fixed bottom-0 left-0 z-20">
 			<audio
 				ref={audioRef}
 				src={book.audioLink}

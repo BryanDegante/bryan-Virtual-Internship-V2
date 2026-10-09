@@ -55,11 +55,7 @@ export async function POST(request: Request) {
 						{ merge: true },
 					);
 
-				console.log('Subscription saved:', {
-					firebaseUid,
-					plan,
-					status: subscription.status,
-				});
+			
 
 				break;
 			}
@@ -67,16 +63,12 @@ export async function POST(request: Request) {
 			case 'checkout.session.completed': {
 				const session = event.data.object as Stripe.Checkout.Session;
 
-				console.log('Checkout completed:', {
-					firebaseUid: session.client_reference_id,
-					sessionId: session.id,
-				});
+				
 
 				break;
 			}
 
-			default:
-				console.log(`Unhandled event type: ${event.type}`);
+			
 		}
 
 		return NextResponse.json({ received: true });

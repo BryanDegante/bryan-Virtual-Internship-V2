@@ -1,7 +1,8 @@
 import { Book } from '@/types/Book';
-import { LuClock3 } from 'react-icons/lu';
 import { FaRegStar } from 'react-icons/fa';
 import Link from 'next/link';
+import BookDuration from './BookDuration';
+import { LuClock3 } from 'react-icons/lu';
 
 type BookCardProps = {
 	book: Book;
@@ -32,10 +33,13 @@ export default function BookCard({ book }: BookCardProps) {
 			</div>
 			<div className="flex gap-2">
 				<div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-					<div className="flex w-4 h-4">
-						<LuClock3 />
-					</div>
-				</div>
+						
+							<div className="flex w-4 h-4">
+								<LuClock3 />
+							</div>
+					<BookDuration audioLink={book.audioLink} />
+							
+						</div>
 				<div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
 					<div className="flex w-4 h-4">
 						<FaRegStar />
